@@ -1,18 +1,30 @@
-local l = require('list')
-local t = require('testing')
+local test_list = {}
+local l = require("list")
+local t = require("testing")
 
-local a = {1, 2, 3, 4}
 local test_result = {}
 
-function test_invalid_sum()
-    t.assert_equal(9, l.sum(a))
+function test_list.test_short_list()
+    local list = {1, 2, 3, 4}
+    return t.assert_equal(10, l.sum(list))
 end
 
-function test_valid_sum()
-    t.assert_equal(10, l.sum(a))
+function test_list.test_longer_list()
+    local list = {}
+    for i = 1, 1000 do
+        table.insert(list, i)
+    end
+    return t.assert_equal(500500, l.sum(list))
 end
 
-test_invalid_sum()
-test_valid_sum()
+function test_list.test_long_list()
+    local list = {}
+    for i = 1,100000 do
+        table.insert(list, i)
+    end
+    return t.assert_equal(5000050000, l.sum(list))
+end
 
-l.printline(t.results)
+t.run_tests(test_list)
+
+return test_list
