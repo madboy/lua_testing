@@ -1,6 +1,7 @@
 local list = {}
 
 function list.sum(l)
+    -- Sum will only work for lists and not dicts
     local s = 0
     for _,v in ipairs(l) do
         s = s + v

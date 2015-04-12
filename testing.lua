@@ -15,6 +15,18 @@ function testing.assert_equal(expected, actual)
     end
 end
 
+function testing.assert_error(func, args)
+    local status, exception = pcall(func, args)
+    if not status then
+        table.insert(results, ".")
+        return true, ""
+    else
+        local f = string.format("Expected error but got: %s", exception)
+        table.insert(results, "f")
+        return false, f
+    end
+end
+
 function testing.print_results(start, stop)
     local time_spent = stop - start
     l.printline(results)

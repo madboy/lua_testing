@@ -4,12 +4,12 @@ local t = require("testing")
 
 local test_result = {}
 
-function test_list.test_short_list()
+function test_list.test_sum_short_list()
     local list = {1, 2, 3, 4}
     return t.assert_equal(10, l.sum(list))
 end
 
-function test_list.test_longer_list()
+function test_list.test_sum_longer_list()
     local list = {}
     for i = 1, 1000 do
         table.insert(list, i)
@@ -17,12 +17,27 @@ function test_list.test_longer_list()
     return t.assert_equal(500500, l.sum(list))
 end
 
-function test_list.test_long_list()
+function test_list.test_sum_long_list()
     local list = {}
     for i = 1,100000 do
         table.insert(list, i)
     end
     return t.assert_equal(5000050000, l.sum(list))
+end
+
+function test_list.test_sum_floats()
+    local list = {1.1, 2.2, 3.03, 4.004}
+    return t.assert_equal(10.334, l.sum(list))
+end
+
+function test_list.test_sum_dict()
+    local list = {x=1, y=2, z=4}
+    return t.assert_equal(0, l.sum(list))
+end
+
+function test_list.test_sum_strings_should_fail()
+    local list = {'a', 'b', 'c'}
+    return t.assert_error(l.sum, list)
 end
 
 t.run_tests(test_list)
