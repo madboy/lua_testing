@@ -40,6 +40,16 @@ function test_list.test_sum_strings_should_fail()
     return t.assert_error(l.sum, list)
 end
 
+function test_list.test_join()
+    local list = {'a', 'b', 'c'}
+    return t.assert_equal('abc', l.join(list))
+end
+
+function test_list.test_join_with_char()
+    local list = {1, 2, 3}
+    return t.assert_equal('1,2,3', l.join(list, ','))
+end
+
 t.run_tests(test_list)
 
 return test_list

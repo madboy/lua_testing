@@ -29,7 +29,7 @@ end
 
 function testing.print_results(start, stop)
     local time_spent = stop - start
-    l.printline(results)
+    print(l.join(results))
     print("-----------------------")
     print(string.format("Ran %d tests in %.3fs", #results, time_spent))
 end

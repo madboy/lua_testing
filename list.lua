@@ -15,12 +15,16 @@ function list.print(l)
     end
 end
 
-function list.printline(l)
+function list.join(l, separator)
     local out = ""
-    for _,v in ipairs(l) do
+    local s = separator or ""
+    for i,v in ipairs(l) do
         out = out .. v
+        if i < #l then
+            out = out .. s
+        end
     end
-    print(out)
+    return out
 end
 
 return list
