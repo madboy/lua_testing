@@ -27,4 +27,12 @@ function list.join(l, separator)
     return out
 end
 
+function list.reduce(l, f)
+    local reduce = table.remove(l, 1)
+    for _,v in ipairs(l) do
+        reduce = f(reduce, v)
+    end
+    return reduce
+end
+
 return list

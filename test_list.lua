@@ -50,6 +50,11 @@ function test_list.test_join_with_char()
     return t.assert_equal('1,2,3', l.join(list, ','))
 end
 
+function test_list.test_reduce_addition()
+    local list = {1, 2, 3}
+    return t.assert_equal(6, l.reduce(list, function(x,y) return x + y end))
+end
+
 t.run_tests(test_list)
 
 return test_list
