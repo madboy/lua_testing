@@ -4,8 +4,16 @@ local l = require("list")
 local results = {}
 
 function testing.assert_equal(expected, actual)
-    local caller = debug.getinfo(2).name
-    if expected == actual then
+    if type(expected) == 'table' then
+        if l.compare(expected, actual) then
+            table.insert(results, ".")
+            return true, ""
+        else
+            local f = string.format("Expected {%s} but was {%s}", l.join(expected, ","), l.join(actual, ","))
+            table.insert(results, "f")
+            return false, f
+        end
+    elseif expected == actual then
         table.insert(results, ".")
         return true, ""
     else

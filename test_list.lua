@@ -55,6 +55,65 @@ function test_list.test_reduce_addition()
     return t.assert_equal(6, l.reduce(list, function(x,y) return x + y end))
 end
 
+function test_list.test_member_match()
+    local list = {3, 1, 2}
+    local el = 1
+    return t.assert_equal(true, l.member(el, list))
+end
+
+function test_list.test_member_no_match()
+    local list = {1, 2, 3}
+    local el = 4
+    return t.assert_equal(false, l.member(el, list))
+end
+
+function test_list.test_find_all_match()
+    local list = {1, 2, 3}
+    local el = 1
+    return t.assert_equal({1}, l.find_all(el, list))
+end
+
+function test_list.test_find_all_matches()
+    local list = {1, 2, 1, 3}
+    local el = 1
+    return t.assert_equal({1, 1}, l.find_all(el, list))
+end
+
+function test_list.test_find_all_no_match()
+    local list = {1, 2, 3}
+    local el = 4
+    return t.assert_equal({}, l.find_all(el, list))
+end
+
+-- should this return a list instead?
+function test_list.test_remove()
+    local list = {1, 2, 3}
+    local el = 2
+    l.remove(list, el)
+    return t.assert_equal({1, 3}, list)
+end
+
+function test_list.test_remove_nothing_to_remove()
+    local list = {1, 2, 3}
+    local el = 4
+    l.remove(list, el)
+    return t.assert_equal({1, 2, 3}, list)
+end
+
+function test_list.test_add()
+    local list = {1, 2, 3}
+    local el = 4
+    l.add(list, el)
+    return t.assert_equal({1, 2, 3, 4}, list)
+end
+
+function test_list.test_add()
+    local list = {1, 2, 3}
+    local el = 3
+    l.add(list, el)
+    return t.assert_equal({1, 2, 3}, list)
+end
+
 t.run_tests(test_list)
 
 return test_list
