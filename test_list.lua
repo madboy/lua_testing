@@ -114,6 +114,19 @@ function test_list.test_add()
     return t.assert_equal({1, 2, 3}, list)
 end
 
+function test_list.test_indexes()
+    local list = {1,1,1}
+    local result = l.get_indexes(list)
+    return t.assert_equal({1,2,3}, result)
+end
+
+function test_list.test_named_indexes()
+    local list = {x=1, y=1, z=1}
+    local result = l.get_indexes(list)
+    table.sort(result)
+    return t.assert_equal({'x', 'y', 'z'}, result)
+end
+
 t.run_tests(test_list)
 
 return test_list

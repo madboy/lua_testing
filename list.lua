@@ -95,4 +95,12 @@ function list.max(l)
     end
     return current
 end
+
+function list.get_indexes(l)
+    local indexes = {}
+    for i,v in pairs(l) do
+        table.insert(indexes, i)
+    end
+    return indexes
+end
 return list
